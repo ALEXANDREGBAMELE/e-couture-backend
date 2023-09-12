@@ -14,16 +14,17 @@ import java.util.Date;
 @Table(name = "_article")
 public class Article {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long articleId;
     private String libelle;
     private String description;
-    private boolean status;
+//    private boolean status;
     private String couleur;
     private String taille;
     private double prix;
     private Date dateDeCreation ;
     private int duree ;
+    private String imgUrl;
 
 }
 

@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "_user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long UserId;
     private String nom;
     private String prenom;
@@ -25,5 +27,7 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_role", referencedColumnName = "id")
     private Roles roles ;
+    @OneToMany(mappedBy = "user")
+    private List<Atelier> atelier;
     private String motDePasse;
 }
