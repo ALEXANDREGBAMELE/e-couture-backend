@@ -5,24 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "_facture")
-public class Facture {
+@Table(name = "_categorie")
+public class Categorie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long categorieId;
+    private String libelleCategorie;
 
-    @Column(name = "date")
-    private LocalDate date;
-
-    @Column(name = "montant")
-    private Double montant;
-
-    @OneToOne
-    private Commande commande;
 }

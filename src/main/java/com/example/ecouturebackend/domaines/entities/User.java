@@ -22,12 +22,18 @@ public class User {
     private String prenom;
     @Column(unique = true, nullable = false)
     private String mail ;
+    private String motDePasse;
+    private String ConfirmMotDePasse;
     private String telephone ;
     private String dateNaissance ;
+    private String adresse;
+    private String ville;
+    private String codePostal;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_role", referencedColumnName = "id")
     private Roles roles ;
+
     @OneToMany(mappedBy = "user")
     private List<Atelier> atelier;
-    private String motDePasse;
 }
