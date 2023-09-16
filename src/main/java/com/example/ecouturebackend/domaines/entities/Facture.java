@@ -23,6 +23,7 @@ public class Facture {
     @Column(name = "montant")
     private Double montant;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "commande_id", nullable = false)
     private Commande commande;
 }

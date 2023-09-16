@@ -30,10 +30,9 @@ public class User {
     private String ville;
     private String codePostal;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_role", referencedColumnName = "id")
-    private Roles roles ;
-
+    @Enumerated(EnumType.STRING)
+    private Roles role;
+    
     @OneToMany(mappedBy = "user")
     private List<Atelier> atelier;
 }
