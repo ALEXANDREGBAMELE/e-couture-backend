@@ -17,12 +17,54 @@ public class UserController {
     public UserController(UserServiceImp userServiceImp) {
         this.userServiceImp = userServiceImp;
     }
-    @PostMapping("/add/{token}")
+
+    /**
+     * Ajouter un utilistaeur, cette partie concerne les utilisateurs normaux.
+     * @param user
+     * @param token
+     * @return
+     */
+    @PostMapping("/add-user/{token}")
     public ResponseEntity<?> addUser(@RequestBody User user, @PathVariable String token){
         if (token.contains("1234"))
+            user.setRole("USER"); //donner le role USER
             return userServiceImp.addUser(user);
         return ResponseEntity.badRequest().body("Tocken is not correct");
     }
+
+
+    /**
+     * Cette partie permet d'ajouter un couturier, le formulaire des couturier doit appeler cet endpoint
+     * @param user
+     * @param token
+     * @return
+     */
+
+    @PostMapping("/add-couturier/{token}")
+    public ResponseEntity<?> addUser(@RequestBody User user, @PathVariable String token){
+        if (token.contains("1234"))
+            user.setRole("COUTURIER"); //donner le role COUTURIER à l'utilisateur
+            return userServiceImp.addUser(user);
+        return ResponseEntity.badRequest().body("Tocken is not correct");
+    }
+
+
+    
+    /**
+     * Cette partie permet d'ajouter un admin, le formulaire des admin doit appeler cet endpoint
+     * @param user
+     * @param token
+     * @return
+     */    
+    @PostMapping("/add-admin/{token}")
+    public ResponseEntity<?> addUser(@RequestBody User user, @PathVariable String token){
+        if (token.contains("1234"))
+            user.setRole("ADMIN"); //donner le role Admin à l'utilisateur
+            return userServiceImp.addUser(user);
+        return ResponseEntity.badRequest().body("Tocken is not correct");
+    }
+
+
 
     @GetMapping("/get")
     public List<User> getUserAll()

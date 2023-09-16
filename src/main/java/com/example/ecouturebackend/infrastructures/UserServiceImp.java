@@ -16,7 +16,8 @@ import java.util.Optional;
 public class UserServiceImp implements UserService {
 
     private final UserRepository userRepository;
-    private final RoleRepository repository;
+
+
     @Override
     public ResponseEntity<?> addUser(User user) {
         Optional<User> user1 = userRepository.findByMail(user.getMail());
@@ -49,7 +50,7 @@ public class UserServiceImp implements UserService {
             user2.setMail(user.getMail());
             user2.setDateNaissance(user2.getDateNaissance());
             user2.setMotDePasse(user.getMotDePasse());
-            user2.setRoles(user.getRoles());
+            user2.setRole(user.getRole());
             userRepository.save(user2);
             return ResponseEntity.ok("User enregistrer");
 
